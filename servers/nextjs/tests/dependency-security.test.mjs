@@ -6,6 +6,14 @@ import { mergeAttributes } from "@tiptap/core";
 import katex from "katex";
 
 const require = createRequire(import.meta.url);
+const fromParser = createRequire(require.resolve("@typescript-eslint/typescript-estree"));
+const fromSucrase = createRequire(require.resolve("sucrase"));
+const fromEslint = createRequire(require.resolve("eslint"));
+require("../../../scripts/glob-security-checks.cjs").registerGlobSecurityTests({
+  modernMatcherPath: fromParser.resolve("minimatch"),
+  modernGlobPath: fromSucrase.resolve("glob"),
+  legacyMatcherPath: fromEslint.resolve("minimatch"),
+});
 
 test("Windows service queries remove PowerShell Unicode delimiters and preserve service names", () => {
   const probe = spawnSync(process.execPath, ["-e", `

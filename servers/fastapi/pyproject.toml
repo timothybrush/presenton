@@ -40,6 +40,10 @@ dependencies = [
 
 [tool.uv]
 index-strategy = "unsafe-best-match"
+constraint-dependencies = [
+    "joserfc>=1.7.6",
+    "pyasn1>=0.6.5",
+]
 
 [tool.setuptools.packages.find]
 where = ["."]
